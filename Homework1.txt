@@ -1,0 +1,76 @@
+// Кортеж для двух человек с одинаковыми типами данных и параметрами
+let programmer: (String, String, Int) = ("Azam", "Zholborsov", 24)
+let person = (name: "Azam", surname: "Zholborsov", age: 24)
+programmer.0  // значения по индексу
+person.age  // значения по параметру
+let surNameOfPerson = person.surname
+let ageOfPerson = programmer.2
+
+// Массив с количеством дней в месяцах
+let daysInMonths: Array<Int> = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+// Вывод количества дней в каждом месяце
+for days in daysInMonths {
+    print(days)
+}
+// Массив с названиями месяцев
+let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+// Вывод названия месяца и количества дней
+for i in 0..<12 {
+    print("\(monthNames[i]): \(daysInMonths[i])")
+}
+
+// Массив кортежей с параметрами (имя месяца, количество дней)
+var monthAndDays: [(String, Int)] = []
+for i in 0..<12 {
+    monthAndDays.append((monthNames[i], daysInMonths[i]))
+}
+print(monthAndDays)
+
+// Вывод количества дней в обратном порядке
+for days in monthAndDays.reversed() {
+    print(days)
+}
+
+// Подсчет количества дней до конца года
+let month = 10 // октябрь
+let day = 23
+var daysLeft = 0
+for i in month..<12 {
+    if i == month {
+        daysLeft += daysInMonths[i] + daysInMonths[i-1] - day
+    } else {
+        daysLeft += daysInMonths[i]
+    }
+}
+print("До конца года осталось \(daysLeft) дней")
+
+
+// Словарь как журнал
+var log: [String: Int] = ["Petter": 2, "John": 3, "Liza": 5, "Josh": 4]
+log["John"] = 4
+// Поздравить или отправить на пересдачу
+for (name, grade) in log {
+    if grade >= 4 {
+        print("\(name), отличная оценка!")
+    } else if grade == 3 {
+        print("\(name), удовлетворительная оценка")
+    } else {
+        print("\(name), нужно пересдать экзамен")
+    }
+}
+
+// Добавление новых студентов
+log["Ashly"] = 4
+log["Brandon"] = 5
+
+// Отчисление студента
+log.removeValue(forKey: "Petter")
+
+// Средний балл студентов
+var sum = 0
+for (_, grade) in log {
+    sum += grade
+}
+var avarage = sum / log.count
+print("Средний балл студентов: \(avarage)")
